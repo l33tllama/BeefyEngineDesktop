@@ -8,9 +8,17 @@ import java.util.List;
  * Created by Leo Febey on 3/01/2016.
  */
 public class DesktopInput implements Input{
+
+    DesktopKeyHandler keyHandler;
+    DesktopMouseHandler mouseHandler;
+
+    public DesktopInput(){
+        keyHandler = new DesktopKeyHandler();
+        mouseHandler = new DesktopMouseHandler();
+    }
     @Override
     public boolean isKeyPressed(int keyCode) {
-        return false;
+        return keyHandler.isKeyDown(keyCode);
     }
 
     @Override
@@ -31,6 +39,16 @@ public class DesktopInput implements Input{
     @Override
     public int getTouchY(int pointer) {
         return 0;
+    }
+
+    @Override
+    public int getMouseX() {
+        return mouseHandler.getX();
+    }
+
+    @Override
+    public int getMouseY() {
+        return mouseHandler.getY();
     }
 
     @Override
